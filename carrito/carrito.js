@@ -1,5 +1,5 @@
 // Array bidimensional para almacenar los productos disponibles
-const products = [
+const Mercancia = [
     [1, "Vestido 1", 1000, "imagenes/vestido1.jpg"],
     [2, "Vestido 2", 1000, "imagenes/vestido2.jpg"],
     [3, "Vestido 3", 1000, "imagenes/vestido3.jpg"],
@@ -9,74 +9,77 @@ const products = [
     [7, "Vestido 7", 1000, "imagenes/vestido7.jpg"],
     [8, "Vestido 8", 1000, "imagenes/vestido8.jpg"]
 ];
-
 // Array para almacenar los productos agregados al carrito
-const cartItems = [];
-
-// Función para mostrar los productos disponibles en la página
+const carrito = [];
+// Función para mostrar los productos en la página
 function displayProducts() {
-    const productListDiv = document.getElementById("padre");
-    products.forEach((product) => {
-        const productCard = document.createElement("div");
-        productCard.className = "product-card";
-        productCard.innerHTML = `
-            <img src="${product[3]}" alt="${product[1]}">
+    const productListaDiv = document.getElementById("padre");//Buscar contenedor
+    //Recorre cada elemento del array Mercancia
+    Mercancia.forEach((producto) => {
+        const ProductoCarta = document.createElement("div");//Crear div
+        ProductoCarta.className = "product-card";//Agregar clase a carta
+        ProductoCarta.innerHTML = `
+            <img src="${producto[3]}" alt="${producto[1]}">
             <div>
-                <h4>${product[1]}</h4>
-                <p>Precio: $${product[2].toFixed(2)}</p>
+                <h4>${producto[1]}</h4>
+                <p>Precio: $${producto[2].toFixed(2)}</p>
                 <div class="quantity-input">
-                    <label for="quantity-${product[0]}">Cantidad:</label>
-                    <input type="number" id="quantity-${product[0]}" min="1" value="1">
+                    <label for="quantity-${producto[0]}">Cantidad:</label>
+                    <input type="number" id="quantity-${producto[0]}" min="1" value="1">
                 </div>
-                <button onclick="addToCart(${product[0]})">Agregar al Carrito</button>
+                <button onclick="addToCart(${producto[0]})">Agregar al Carrito</button>
             </div>`;
-        productListDiv.appendChild(productCard);
+        productListaDiv.appendChild(ProductoCarta);
     });
 }
-
-// Función para agregar productos al carrito con la cantidad especificada por el usuario
+//Función para agregar productos al carrito con la cantidad especificada por el usuario
 function addToCart(productId) {
     const quantityInput = document.getElementById(`quantity-${productId}`);
     const quantity = parseInt(quantityInput.value);
-    const productToAdd = products.find((product) => product[0] === productId);
-
+    const productToAdd = Mercancia.find((producto) => producto[0] === productId);//find devuelve el valor del primer elemento del array 
     if (productToAdd && quantity > 0) {
-        const existingProductIndex = cartItems.findIndex(item => item.id === productId);
-        if (existingProductIndex >= 0) {
-            cartItems[existingProductIndex].quantity += quantity;
+        const IndiceProducto = carrito.findIndex(item => item.id === productId);
+        if (IndiceProducto >= 0) {
+            carrito[IndiceProducto].quantity += quantity;
         } else {
-            cartItems.push({ id: productId, name: productToAdd[1], price: productToAdd[2], quantity: quantity });
+            //Definir elementos
+            carrito.push({
+                id: productId,
+                nombre: productToAdd[1],
+                precio: productToAdd[2],
+                quantity: quantity//Cantidad
+            });
         }
         updateCart();
     }
 }
-
-// Función para actualizar el carrito y mostrarlo
+//Actualizar el carrito y mostrarlo
 function updateCart() {
-    const cartItemsList = document.getElementById("cart-items");
-    cartItemsList.innerHTML = "";
-
-    cartItems.forEach((item) => {
-        const li = document.createElement("li");
-        const subtotal = (item.quantity * item.price).toFixed(2);
-        li.textContent = `${item.name} - $${item.price.toFixed(2)} - Cantidad: ${item.quantity} - Subtotal: $${subtotal}`;
-        cartItemsList.appendChild(li);
+    const ListaCarrito = document.getElementById("cart-items");
+    ListaCarrito.innerHTML = "";
+    carrito.forEach((item) => {
+        const li = document.createElement("li");//Crear li
+        const subtotal = (item.quantity * item.precio).toFixed(2);//Calcular subtotal
+        //Agregar cantidad, subtotal y nnombre del producto al carro
+        li.textContent = `${item. nombre} - $${item.precio.toFixed(2)} - Cantidad: ${item.quantity} - Subtotal: $${subtotal}`;
+        ListaCarrito.appendChild(li);//Agregar li en carrito
     });
-
+    //Espacio para agregar el total
     const totalDiv = document.getElementById("total");
     totalDiv.textContent = `Total a pagar: $${calculateTotal()}`;
 }
-
-// Función para calcular el total a pagar
+//Calcular el total a pagar
 function calculateTotal() {
     let total = 0;
-    cartItems.forEach((item) => {
-        total += item.price * item.quantity;
+    carrito.forEach((item) => {
+        total += item.precio * item.quantity;
     });
     return total.toFixed(2);
 }
-
-// Llamada inicial para mostrar los productos
+//Mostrar los productos
 displayProducts();
 
-
+/*Terminos:
+push:Añade uno o más elementos al final de un array y devuelve la nueva longitud del array
+find:Devuelve el valor del primer elemento del array 
+ */
