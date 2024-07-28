@@ -1,104 +1,52 @@
-
-html{
+/*IMAGENES*/
+html {
   background-image: url(imagenes/fondo.png);
 }
 img{
-    height: 600px;
- 
+  height: 600px;
 }
-
-
-
-footer {
-    margin-top: 10px;
-    background-color: #ffb3c6;
+.ofertas {
+   height: 200px;
+  margin-top:200px;
+  padding-left: 20px;
 }
-.product-card{
-    width: 20%;
-    margin: 10px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    border-radius: 30px;
-    background-color: rgb(255, 255, 255);
-}
-.container{
- 
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-   border: 30px;
-
-}
-
-
-nav{
-
-
-  width: 100%;
-    
-    position: fixed;
-    
-    top: 0;
-    background-color: #fff;
-    transition: background-color .5s ease-in-out;
-display: flex;
-align-content:center;
-list-style-type: none; 
-z-index: 300;
-}
-nav ul {
-
-  list-style-type: none;
-  
-}
-
-
-
-/*
-
-
-nav,
-
-footer {
-  background-color: white;
-  padding: 1%;
-}
-
-nav {
-  height: 40px;
-  background-color: #f0e6ef;
+.product-card {
+  height: 600px;
+  width: 20%;
+  margin: 10px;
+  padding: 20px;
   display: flex;
-  margin-bottom: 10px;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 30px;
+  background-color: rgb(255, 255, 255);
 }
-
-nav ul {
-  padding: 0;
-  list-style-type: none;
-  flex: 2;
+/*DIV*/
+.container {
   display: flex;
-}
-
-nav li {
-  display: inline;
-  text-align: center;
-}
-
-nav a {
-  display: inline-block;
-  font-size: 1.5rem;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: black;
-}
-
-nav form {
-  flex: 1;
-  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
-  height: 100%;
-  padding: 0 1.5em;
+  border: 30px;
+
 }
-*/
+/*FOOTER*/
+footer {
+  margin-top: 10px;
+  background-color: #ffb3c6;
+}
+/*NAV*/
+nav {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  background-color: #fff;
+  transition: background-color .5s ease-in-out;
+  display: flex;
+  align-content: center;
+  list-style-type: none;
+  z-index: 300;
+}
+nav ul {
+  list-style-type: none;
+}
